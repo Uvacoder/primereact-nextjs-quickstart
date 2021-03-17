@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { Button } from 'primereact/button';
-import logo from '../static/primereact-logo.png';
-import 'primereact/resources/themes/nova-light/theme.css';
-import 'primereact/resources/primereact.min.css';
-import 'primeicons/primeicons.css';
 
 class Index extends Component {
     constructor() {
@@ -20,7 +16,8 @@ class Index extends Component {
         return (
             <div className="App">
                 <div className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
+                    <img src="static/primereact-logo.png" className="App-logo" alt="logo" />
+
                     <h2>Welcome to PrimeReact</h2>
                 </div>
                 <div className="App-intro">
