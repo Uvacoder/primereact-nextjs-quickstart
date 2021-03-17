@@ -24,21 +24,20 @@ const Index = () => {
     }
 
     return (
-            <div className="App">
+        <div className="App">
+            <Toast ref={toastRef} />
 
-                <Toast ref={toastRef} />
+            <header className="App-header">
+                <img src="logo.svg" className="App-logo" alt="logo" />
+            </header>
 
-                <header className="App-header">
-                    <img src="logo.svg" className="App-logo" alt="logo" />
-                </header>
-
-                <form className="p-d-flex p-jc-center p-mt-6" onSubmit={onFormSubmit}>
-                    <InputText value={text} onChange={(e) => setText(e.target.value)} />
-                    <Button type="submit" label="Submit" icon="pi pi-check" className="p-ml-2" />
-                </form>
+            <form className="p-d-flex p-jc-center p-mt-6" onSubmit={onFormSubmit}>
+                <InputText value={text} onChange={(e) => setText(e.target.value)} />
+                <Button type="submit" label="Submit" icon="pi pi-check" className="p-ml-2" />
+            </form>
 
 
-                <style jsx>{`             
+            <style jsx>{`             
 .App {
     text-align: center;
   }
@@ -79,7 +78,7 @@ const Index = () => {
   }
   
 `}</style>
-            </div>
+        </div>
     );
 }
 
