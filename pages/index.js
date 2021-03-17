@@ -1,57 +1,86 @@
-import React, { Component } from 'react';
+import React, { useState, useRef } from 'react';
+import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
+import { Toast } from 'primereact/toast';
 
-class Index extends Component {
-    constructor() {
-        super();
-        this.state = { count: 0 };
-        this.increment = this.increment.bind(this);
+import PrimeReact from 'primereact/api';
+
+const Index = () => {
+    const [text, setText] = useState('');
+    const toastRef = useRef();
+
+    // active ripple effect
+    PrimeReact.ripple = true;
+
+    const onFormSubmit = (e) => {
+        if (text) {
+            toastRef.current.show({ severity: 'info', summary: text, life: 3000 });
+        }
+
+        // clear
+        setText('');
+
+        e.preventDefault();
     }
 
-    increment() {
-        this.setState({ count: this.state.count + 1 });
-    }
-
-    render() {
-        return (
+    return (
             <div className="App">
-                <div className="App-header">
-                    <img src="static/primereact-logo.png" className="App-logo" alt="logo" />
 
-                    <h2>Welcome to PrimeReact</h2>
-                </div>
-                <div className="App-intro">
-                    <Button label="Click" icon="pi pi-check" onClick={this.increment} />
+                <Toast ref={toastRef} />
 
-                    <p>Number of Clicks: {this.state.count}</p>
-                </div>
+                <header className="App-header">
+                    <img src="logo.svg" className="App-logo" alt="logo" />
+                </header>
 
-<style jsx>{`
+                <form className="p-d-flex p-jc-center p-mt-6" onSubmit={onFormSubmit}>
+                    <InputText value={text} onChange={(e) => setText(e.target.value)} />
+                    <Button type="submit" label="Submit" icon="pi pi-check" className="p-ml-2" />
+                </form>
+
+
+                <style jsx>{`             
 .App {
     text-align: center;
-    font-family: "Open Sans", "Helvetica Neue", sans-serif;
-}
-
-.App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
-}
-
-.App-header {
-    background-color: #222;
-    height: 190px;
-    padding: 20px;
+  }
+  
+  .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+  .App-header {
+    background-color: #282c34;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
     color: white;
-}
-
-.App-intro {
-    padding: 2em;
-    font-size: large;
-}
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
 `}</style>
             </div>
-        );
-    }
+    );
 }
 
 export default Index;
